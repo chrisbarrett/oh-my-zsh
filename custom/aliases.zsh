@@ -6,7 +6,6 @@
 
 alias git=hub
 
-alias gse='git send-email'
 alias gup='git fetch origin -v && gr origin/$(GitCurrentBranch)'
 alias grs='git reset'
 alias grh='git reset --hard'
@@ -34,6 +33,10 @@ alias gclone='git clone'
 alias gbs='git bisect'
 alias gcp='git cherry-pick'
 alias gl='git log --graph --all --format=format:"%C(bold blue)%h%C(reset) %C(green)- %s %C(reset)%C(bold green)— %an%C(reset) %C(cyan)(%ar)%C(reset) %C(blue)%d%C(reset)" --abbrev-commit --date=relative'
+
+function GitCurrentBranch {
+  git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
+}
 
 
 ###############################################################################
@@ -97,5 +100,3 @@ alias ee='emacs ~/.emacs.d/init.el'
 
 alias has=hasley
 alias skel=skeletor
-
-
