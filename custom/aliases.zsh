@@ -37,6 +37,7 @@ alias glp='git log --patch'
 alias gls='git log -S'
 alias gsp='git smart-pull'
 alias gp='git push'
+alias gpush='git push origin $(GitCurrentBranch)'
 alias gf='git fetch'
 alias gc='git clean'
 alias gclone='git clone'
@@ -53,7 +54,7 @@ function GitCurrentBranch {
 # ls & tree
 ###############################################################################
 
-case $UNAME in
+case `uname` in
     Darwin)
         alias ls='ls -hF';;
     Linux)
@@ -72,7 +73,7 @@ alias k='tree -L 2'
 
 # package management
 
-case $UNAME in
+case `uname` in
     Linux)
         alias ag='sudo apt-get'
         alias agi='sudo apt-get install'
@@ -92,13 +93,12 @@ esac
 # Emacs
 ################################################################################
 
-# use emacs -nw, except in Cygwin. Cygwin has problems
-# running emacs in-terminal.
+alias emacs='emacs -nw'
 
-case $UNAME in
-    Darwin) alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw' ;;
-    *)      alias emacs='emacs -nw' ;;
-esac
+# If running on OS X, prefer emacs in /Applications
+if [[ `uname` == "Darwin" ]]; then
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+fi
 
 alias e='emacs'
 alias ez='emacs ~/.zshrc'
